@@ -44,7 +44,11 @@ body{
 .content{
   display:none;
   text-align:center;
-  padding-top:60px;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  width:90%;
 }
 
 /* Foto */
@@ -181,4 +185,7 @@ setInterval(()=>{
 </script>
 
 </body>
+body{
+  overflow:auto;
+}
 </html>
