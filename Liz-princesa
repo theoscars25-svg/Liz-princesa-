@@ -21,53 +21,39 @@ body{
   background: radial-gradient(circle at bottom, #020111, #000);
 }
 
-/* Corazones */
-.heart{
+/* BOTON INICIO */
+.start{
   position:absolute;
-  color:#ff4da6;
-  animation:float 6s linear infinite;
-}
-@keyframes float{
-  from{transform:translateY(100vh);opacity:1;}
-  to{transform:translateY(-10vh);opacity:0;}
-}
-
-/* CHAT */
-.chat{
-  position:absolute;
-  top:20%;
   width:100%;
-  padding:10px;
+  height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
-.bubble{
+.btn{
   background:#25D366;
-  padding:10px;
+  padding:15px 25px;
   border-radius:10px;
-  margin:8px;
-  width:max-content;
-  max-width:70%;
-  animation:fadeIn 1s;
+  font-size:18px;
+  cursor:pointer;
 }
 
-.bubble.you{
-  margin-left:auto;
-  background:#128C7E;
+/* CONTENIDO */
+.content{
+  display:none;
 }
 
 /* FOTO */
 .photo{
-  display:none;
-  position:absolute;
-  top:20%;
-  width:100%;
   text-align:center;
-  animation:fadeIn 3s;
+  margin-top:80px;
 }
+
 .photo img{
-  width:230px;
+  width:250px;
   border-radius:20px;
-  box-shadow:0 0 30px white;
+  box-shadow:0 0 25px white;
 }
 
 /* FLORES */
@@ -86,6 +72,7 @@ body{
   background:green;
   animation:grow 4s forwards;
 }
+
 .flower::before{
   content:"🌻";
   position:absolute;
@@ -97,21 +84,12 @@ body{
   to{height:150px;}
 }
 
-/* MENSAJE FINAL */
-.final{
-  display:none;
-  position:absolute;
-  bottom:10%;
+/* TEXTO */
+.texto{
   text-align:center;
-  width:100%;
+  margin-top:20px;
   padding:20px;
   line-height:1.6;
-  animation:fadeIn 4s;
-}
-
-@keyframes fadeIn{
-  from{opacity:0;}
-  to{opacity:1;}
 }
 </style>
 
@@ -121,97 +99,55 @@ body{
 
 <div class="night"></div>
 
-<!-- MUSICA -->
-<iframe width="0" height="0"
-src="https://www.youtube.com/embed/mrXpa-6ZhBM?autoplay=1&loop=1&playlist=mrXpa-6ZhBM"
-allow="autoplay">
-</iframe>
+<!-- MUSICA (MEJOR FORMA) -->
+<audio id="music">
+  <source src="https://files.catbox.moe/8kq7c7.mp3" type="audio/mp3">
+</audio>
 
-<!-- CHAT -->
-<div class="chat" id="chat"></div>
-
-<!-- FOTO -->
-<div class="photo" id="photo">
-  <img src="https://i.postimg.cc/QtXTycc8/Whats-App-Image-2026-03-23-at-10-06-47.jpg">
+<!-- INICIO -->
+<div class="start" id="start">
+  <div class="btn" onclick="startSurprise()">
+    💌 Liz Princesa… toca aquí 💛
+  </div>
 </div>
 
-<!-- FLORES -->
-<div class="flowers" id="flowers" style="display:none;">
-  <div class="flower"></div>
-  <div class="flower"></div>
-  <div class="flower"></div>
-</div>
+<!-- CONTENIDO -->
+<div class="content" id="content">
 
-<!-- MENSAJE FINAL -->
-<div class="final" id="final">
-Liz Princesa… 💛<br><br>
+  <div class="photo">
+    <img src="https://i.postimg.cc/QtXTycc8/Whats-App-Image-2026-03-23-at-10-06-47.jpg">
+  </div>
 
-No sé cómo explicarte todo lo que siento…<br><br>
+  <div class="texto">
+    🌻 Feliz día de las flores amarillas mi amor 💛<br><br>
 
-Llegaste a mi vida y cambiaste todo,  
-le diste luz a mis días y sentido a mi mundo ❤️<br><br>
+    Desde que llegaste a mi vida… todo cambió ❤️<br><br>
 
-Gracias por tu amor, por tu paciencia,  
-por cada abrazo, cada beso… y cada momento 🥹<br><br>
+    Le diste sentido a mis días, alegría a mi mundo  
+    y amor a mi corazón 💕<br><br>
 
-Hoy te regalo estas flores amarillas 🌻  
-como símbolo de todo lo que significas para mí 💛<br><br>
+    Gracias por existir, por elegirme  
+    y por caminar conmigo 🥹<br><br>
 
-Te amo más de lo que las palabras pueden decir… ❤️
+    Liz Princesa… te amo muchísimo 💛🌻
+  </div>
+
+  <div class="flowers">
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+  </div>
+
 </div>
 
 <script>
+function startSurprise(){
+  document.getElementById("start").style.display="none";
+  document.getElementById("content").style.display="block";
 
-/* CORAZONES */
-setInterval(()=>{
-  let h=document.createElement("div");
-  h.className="heart";
-  h.innerHTML="💖";
-  h.style.left=Math.random()*100+"vw";
-  h.style.fontSize=(Math.random()*20+10)+"px";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),6000);
-},500);
-
-/* CHAT ANIMADO */
-let mensajes=[
-"Liz Princesa… 💛",
-"Tengo algo que decirte…",
-"No es cualquier mensaje…",
-"Es algo que siento desde el corazón ❤️",
-"Prométeme que lo vas a ver hasta el final… 🥺"
-];
-
-let chat=document.getElementById("chat");
-
-function mostrarChat(i){
-  if(i<mensajes.length){
-    let div=document.createElement("div");
-    div.className="bubble";
-    div.innerText=mensajes[i];
-    chat.appendChild(div);
-    setTimeout(()=>mostrarChat(i+1),1500);
-  }else{
-    setTimeout(mostrarFoto,2000);
-  }
+  // aquí SI funciona la música
+  document.getElementById("music").play();
 }
-
-function mostrarFoto(){
-  chat.style.display="none";
-  document.getElementById("photo").style.display="block";
-
-  setTimeout(()=>{
-    document.getElementById("flowers").style.display="flex";
-  },2000);
-
-  setTimeout(()=>{
-    document.getElementById("final").style.display="block";
-  },4000);
-}
-
-/* INICIO AUTOMATICO */
-mostrarChat(0);
-
 </script>
 
 </body>
