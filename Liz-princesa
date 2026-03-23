@@ -29,6 +29,7 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
+  flex-direction:column;
 }
 
 .btn{
@@ -44,14 +45,15 @@ body{
   display:none;
 }
 
-/* Mensaje */
+/* Texto principal */
 .message{
   position:absolute;
-  top:10%;
+  top:8%;
   width:100%;
   text-align:center;
   color:#ffd700;
   font-size:22px;
+  animation:fadeIn 3s;
 }
 
 /* Foto */
@@ -60,12 +62,13 @@ body{
   top:20%;
   width:100%;
   text-align:center;
+  animation:fadeIn 4s;
 }
 
 .photo img{
-  width:220px;
+  width:230px;
   border-radius:20px;
-  box-shadow:0 0 25px rgba(255,255,255,0.5);
+  box-shadow:0 0 30px rgba(255,255,255,0.6);
 }
 
 /* Flores */
@@ -83,7 +86,7 @@ body{
   width:15px;
   height:0;
   background:green;
-  animation:grow 3s forwards;
+  animation:grow 4s forwards;
 }
 
 .flower::before{
@@ -91,12 +94,12 @@ body{
   position:absolute;
   top:-40px;
   left:-12px;
-  font-size:40px;
-  animation:spin 6s linear infinite;
+  font-size:42px;
+  animation:spin 8s linear infinite;
 }
 
 @keyframes grow{
-  to{height:150px;}
+  to{height:160px;}
 }
 
 @keyframes spin{
@@ -104,14 +107,22 @@ body{
   to{transform:rotate(360deg);}
 }
 
-/* Texto final */
+/* Texto final emotivo */
 .texto{
   position:absolute;
-  bottom:15%;
+  bottom:12%;
   width:100%;
   text-align:center;
-  padding:0 20px;
+  padding:0 25px;
   font-size:18px;
+  line-height:1.6;
+  animation:fadeIn 6s;
+}
+
+/* Fade */
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
 }
 </style>
 
@@ -121,15 +132,18 @@ body{
 
 <div class="night"></div>
 
-<!-- MUSICA -->
-<audio id="music" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
-</audio>
+<!-- VIDEO MUSICA (oculto) -->
+<iframe id="music"
+width="0" height="0"
+src="https://www.youtube.com/embed/mrXpa-6ZhBM?autoplay=1&loop=1&playlist=mrXpa-6ZhBM"
+frameborder="0"
+allow="autoplay">
+</iframe>
 
 <!-- INICIO -->
 <div class="start" id="start">
   <div class="btn" onclick="startSurprise()">
-    💌 Liz Princesa, tienes un mensaje (tócame)
+    💌 Liz Princesa, toca aquí… tengo algo para ti 💛
   </div>
 </div>
 
@@ -151,9 +165,17 @@ body{
   </div>
 
   <div class="texto">
-    Eres lo mejor que me ha pasado ❤️<br><br>
-    Gracias por cada momento juntos 💕<br><br>
-    Liz Princesa… te amo muchísimo 💛🌻
+    Desde que llegaste a mi vida… todo cambió ❤️<br><br>
+    Le diste sentido a mis días, alegría a mis momentos  
+    y amor a mi corazón 💕<br><br>
+    
+    No hay palabras suficientes para decirte  
+    lo importante que eres para mí…<br><br>
+    
+    Liz Princesa, gracias por existir,  
+    por elegirme y por caminar conmigo 🥹💛<br><br>
+    
+    Te amo más de lo que puedo explicar 🌻❤️
   </div>
 
 </div>
@@ -162,7 +184,6 @@ body{
 function startSurprise(){
   document.getElementById("start").style.display="none";
   document.getElementById("content").style.display="block";
-  document.getElementById("music").play();
 }
 </script>
 
