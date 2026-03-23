@@ -7,13 +7,13 @@
 <style>
 body{
   margin:0;
+  background:black;
   overflow:hidden;
   font-family: Arial;
-  background:black;
   color:white;
 }
 
-/* Fondo noche */
+/* Fondo */
 .night{
   position:fixed;
   width:100%;
@@ -21,57 +21,56 @@ body{
   background: radial-gradient(circle at bottom, #020111, #000);
 }
 
-/* Pantalla inicio */
-.start{
+/* Corazones */
+.heart{
   position:absolute;
-  width:100%;
-  height:100%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
+  color:#ff4da6;
+  animation:float 6s linear infinite;
+}
+@keyframes float{
+  from{transform:translateY(100vh);opacity:1;}
+  to{transform:translateY(-10vh);opacity:0;}
 }
 
-.btn{
+/* CHAT */
+.chat{
+  position:absolute;
+  top:20%;
+  width:100%;
+  padding:10px;
+}
+
+.bubble{
   background:#25D366;
-  padding:15px 25px;
+  padding:10px;
   border-radius:10px;
-  font-size:18px;
-  cursor:pointer;
+  margin:8px;
+  width:max-content;
+  max-width:70%;
+  animation:fadeIn 1s;
 }
 
-/* Contenido */
-.content{
-  display:none;
+.bubble.you{
+  margin-left:auto;
+  background:#128C7E;
 }
 
-/* Texto principal */
-.message{
-  position:absolute;
-  top:8%;
-  width:100%;
-  text-align:center;
-  color:#ffd700;
-  font-size:22px;
-  animation:fadeIn 3s;
-}
-
-/* Foto */
+/* FOTO */
 .photo{
+  display:none;
   position:absolute;
   top:20%;
   width:100%;
   text-align:center;
-  animation:fadeIn 4s;
+  animation:fadeIn 3s;
 }
-
 .photo img{
   width:230px;
   border-radius:20px;
-  box-shadow:0 0 30px rgba(255,255,255,0.6);
+  box-shadow:0 0 30px white;
 }
 
-/* Flores */
+/* FLORES */
 .flowers{
   position:absolute;
   bottom:0;
@@ -82,47 +81,37 @@ body{
 }
 
 .flower{
-  position:relative;
   width:15px;
   height:0;
   background:green;
   animation:grow 4s forwards;
 }
-
 .flower::before{
   content:"🌻";
   position:absolute;
   top:-40px;
-  left:-12px;
-  font-size:42px;
-  animation:spin 8s linear infinite;
+  font-size:40px;
 }
 
 @keyframes grow{
-  to{height:160px;}
+  to{height:150px;}
 }
 
-@keyframes spin{
-  from{transform:rotate(0);}
-  to{transform:rotate(360deg);}
-}
-
-/* Texto final emotivo */
-.texto{
+/* MENSAJE FINAL */
+.final{
+  display:none;
   position:absolute;
-  bottom:12%;
-  width:100%;
+  bottom:10%;
   text-align:center;
-  padding:0 25px;
-  font-size:18px;
+  width:100%;
+  padding:20px;
   line-height:1.6;
-  animation:fadeIn 6s;
+  animation:fadeIn 4s;
 }
 
-/* Fade */
 @keyframes fadeIn{
-  from{opacity:0; transform:translateY(20px);}
-  to{opacity:1; transform:translateY(0);}
+  from{opacity:0;}
+  to{opacity:1;}
 }
 </style>
 
@@ -132,59 +121,97 @@ body{
 
 <div class="night"></div>
 
-<!-- VIDEO MUSICA (oculto) -->
-<iframe id="music"
-width="0" height="0"
+<!-- MUSICA -->
+<iframe width="0" height="0"
 src="https://www.youtube.com/embed/mrXpa-6ZhBM?autoplay=1&loop=1&playlist=mrXpa-6ZhBM"
-frameborder="0"
 allow="autoplay">
 </iframe>
 
-<!-- INICIO -->
-<div class="start" id="start">
-  <div class="btn" onclick="startSurprise()">
-    💌 Liz Princesa, toca aquí… tengo algo para ti 💛
-  </div>
+<!-- CHAT -->
+<div class="chat" id="chat"></div>
+
+<!-- FOTO -->
+<div class="photo" id="photo">
+  <img src="https://i.postimg.cc/QtXTycc8/Whats-App-Image-2026-03-23-at-10-06-47.jpg">
 </div>
 
-<!-- CONTENIDO -->
-<div class="content" id="content">
+<!-- FLORES -->
+<div class="flowers" id="flowers" style="display:none;">
+  <div class="flower"></div>
+  <div class="flower"></div>
+  <div class="flower"></div>
+</div>
 
-  <div class="message">
-    🌻 Feliz día de las flores amarillas mi amor 💛
-  </div>
+<!-- MENSAJE FINAL -->
+<div class="final" id="final">
+Liz Princesa… 💛<br><br>
 
-  <div class="photo">
-    <img src="https://i.postimg.cc/QtXTycc8/Whats-App-Image-2026-03-23-at-10-06-47.jpg">
-  </div>
+No sé cómo explicarte todo lo que siento…<br><br>
 
-  <div class="flowers">
-    <div class="flower"></div>
-    <div class="flower"></div>
-    <div class="flower"></div>
-  </div>
+Llegaste a mi vida y cambiaste todo,  
+le diste luz a mis días y sentido a mi mundo ❤️<br><br>
 
-  <div class="texto">
-    Desde que llegaste a mi vida… todo cambió ❤️<br><br>
-    Le diste sentido a mis días, alegría a mis momentos  
-    y amor a mi corazón 💕<br><br>
-    
-    No hay palabras suficientes para decirte  
-    lo importante que eres para mí…<br><br>
-    
-    Liz Princesa, gracias por existir,  
-    por elegirme y por caminar conmigo 🥹💛<br><br>
-    
-    Te amo más de lo que puedo explicar 🌻❤️
-  </div>
+Gracias por tu amor, por tu paciencia,  
+por cada abrazo, cada beso… y cada momento 🥹<br><br>
 
+Hoy te regalo estas flores amarillas 🌻  
+como símbolo de todo lo que significas para mí 💛<br><br>
+
+Te amo más de lo que las palabras pueden decir… ❤️
 </div>
 
 <script>
-function startSurprise(){
-  document.getElementById("start").style.display="none";
-  document.getElementById("content").style.display="block";
+
+/* CORAZONES */
+setInterval(()=>{
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="💖";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=(Math.random()*20+10)+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+},500);
+
+/* CHAT ANIMADO */
+let mensajes=[
+"Liz Princesa… 💛",
+"Tengo algo que decirte…",
+"No es cualquier mensaje…",
+"Es algo que siento desde el corazón ❤️",
+"Prométeme que lo vas a ver hasta el final… 🥺"
+];
+
+let chat=document.getElementById("chat");
+
+function mostrarChat(i){
+  if(i<mensajes.length){
+    let div=document.createElement("div");
+    div.className="bubble";
+    div.innerText=mensajes[i];
+    chat.appendChild(div);
+    setTimeout(()=>mostrarChat(i+1),1500);
+  }else{
+    setTimeout(mostrarFoto,2000);
+  }
 }
+
+function mostrarFoto(){
+  chat.style.display="none";
+  document.getElementById("photo").style.display="block";
+
+  setTimeout(()=>{
+    document.getElementById("flowers").style.display="flex";
+  },2000);
+
+  setTimeout(()=>{
+    document.getElementById("final").style.display="block";
+  },4000);
+}
+
+/* INICIO AUTOMATICO */
+mostrarChat(0);
+
 </script>
 
 </body>
