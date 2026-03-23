@@ -3,108 +3,166 @@
 <head>
 <meta charset="UTF-8">
 <title>Para Liz Princesa 💛</title>
+
 <style>
-body {
-    margin: 0;
-    font-family: Arial;
-    background: linear-gradient(135deg, #ff4da6, #ffcc00);
-    text-align: center;
-    color: white;
-    overflow: hidden;
+body{
+  margin:0;
+  overflow:hidden;
+  font-family: Arial;
+  background:black;
+  color:white;
 }
 
-.heart {
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    background: pink;
-    transform: rotate(45deg);
-    animation: float 6s infinite;
-}
-.heart::before, .heart::after {
-    content: "";
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    background: pink;
-    border-radius: 50%;
-}
-.heart::before { top: -8px; }
-.heart::after { left: -8px; }
-
-@keyframes float {
-    from { transform: translateY(100vh) rotate(45deg); }
-    to { transform: translateY(-10vh) rotate(45deg); }
+/* Fondo noche */
+.night{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background: radial-gradient(circle at bottom, #020111, #000);
 }
 
-.mensaje {
-    margin-top: 40vh;
-    background: #25D366;
-    padding: 15px;
-    border-radius: 10px;
-    display: inline-block;
-    cursor: pointer;
+/* Pantalla inicio */
+.start{
+  position:absolute;
+  width:100%;
+  height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
-.contenido {
-    display: none;
-    padding: 20px;
+.btn{
+  background:#25D366;
+  padding:15px 25px;
+  border-radius:10px;
+  font-size:18px;
+  cursor:pointer;
 }
 
-img {
-    width: 250px;
-    border-radius: 20px;
-    margin-top: 15px;
+/* Contenido */
+.content{
+  display:none;
 }
 
-.flor {
-    font-size: 40px;
-    animation: latido 1.5s infinite;
+/* Mensaje */
+.message{
+  position:absolute;
+  top:10%;
+  width:100%;
+  text-align:center;
+  color:#ffd700;
+  font-size:22px;
 }
 
-@keyframes latido {
-    50% { transform: scale(1.2); }
+/* Foto */
+.photo{
+  position:absolute;
+  top:20%;
+  width:100%;
+  text-align:center;
+}
+
+.photo img{
+  width:220px;
+  border-radius:20px;
+  box-shadow:0 0 25px rgba(255,255,255,0.5);
+}
+
+/* Flores */
+.flowers{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  gap:40px;
+}
+
+.flower{
+  position:relative;
+  width:15px;
+  height:0;
+  background:green;
+  animation:grow 3s forwards;
+}
+
+.flower::before{
+  content:"🌻";
+  position:absolute;
+  top:-40px;
+  left:-12px;
+  font-size:40px;
+  animation:spin 6s linear infinite;
+}
+
+@keyframes grow{
+  to{height:150px;}
+}
+
+@keyframes spin{
+  from{transform:rotate(0);}
+  to{transform:rotate(360deg);}
+}
+
+/* Texto final */
+.texto{
+  position:absolute;
+  bottom:15%;
+  width:100%;
+  text-align:center;
+  padding:0 20px;
+  font-size:18px;
 }
 </style>
+
 </head>
 
 <body>
 
-<script>
-for(let i=0;i<30;i++){
- let h=document.createElement("div");
- h.className="heart";
- h.style.left=Math.random()*100+"vw";
- h.style.animationDuration=(Math.random()*3+3)+"s";
- document.body.appendChild(h);
-}
-</script>
+<div class="night"></div>
 
-<div class="mensaje" onclick="mostrar()">
-💌 Liz Princesa, tienes un mensaje (tócame)
+<!-- MUSICA -->
+<audio id="music" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+</audio>
+
+<!-- INICIO -->
+<div class="start" id="start">
+  <div class="btn" onclick="startSurprise()">
+    💌 Liz Princesa, tienes un mensaje (tócame)
+  </div>
 </div>
 
-<div class="contenido" id="contenido">
-<div class="flor">🌻🌻🌻</div>
+<!-- CONTENIDO -->
+<div class="content" id="content">
 
-<h1>Para ti, mi Liz Princesa 💛</h1>
+  <div class="message">
+    🌻 Feliz día de las flores amarillas mi amor 💛
+  </div>
 
-<img src="TU_FOTO_AQUI">
+  <div class="photo">
+    <img src="https://i.postimg.cc/QtXTycc8/Whats-App-Image-2026-03-23-at-10-06-47.jpg">
+  </div>
 
-<p>
-Hoy te regalo estas flores amarillas 🌻<br><br>
-Porque tú iluminas mi vida como nadie más 💕<br><br>
-Gracias por cada momento, cada sonrisa y cada beso ❤️<br><br>
-Eres lo mejor que me ha pasado 💛<br><br>
-Te amo muchísimo mi amor 😘
-</p>
+  <div class="flowers">
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+  </div>
+
+  <div class="texto">
+    Eres lo mejor que me ha pasado ❤️<br><br>
+    Gracias por cada momento juntos 💕<br><br>
+    Liz Princesa… te amo muchísimo 💛🌻
+  </div>
 
 </div>
 
 <script>
-function mostrar(){
- document.querySelector(".mensaje").style.display="none";
- document.getElementById("contenido").style.display="block";
+function startSurprise(){
+  document.getElementById("start").style.display="none";
+  document.getElementById("content").style.display="block";
+  document.getElementById("music").play();
 }
 </script>
 
