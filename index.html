@@ -9,65 +9,58 @@
 body{
 margin:0;
 padding:0;
-background: radial-gradient(circle,#020024,#000000);
-font-family: Arial;
+background:#f2f2f2;
 overflow:hidden;
-color:white;
+font-family:Arial;
+text-align:center;
 }
 
-.content{
-display:none;
-text-align:center;
+.container{
 position:absolute;
-top:45%;
+top:50%;
 left:50%;
 transform:translate(-50%,-50%);
-width:90%;
 }
 
 img{
-width:220px;
+width:260px;
 border-radius:20px;
 box-shadow:0 0 25px pink;
-margin-bottom:20px;
 }
 
-button{
-padding:15px 30px;
-font-size:20px;
-border:none;
-border-radius:30px;
-background:#ff4da6;
-color:white;
-cursor:pointer;
-box-shadow:0 0 15px #ff4da6;
+.mensaje{
+margin-top:25px;
+font-size:26px;
+color:#c4004b;
+font-weight:bold;
+animation:aparecer 3s ease;
 }
 
-button:hover{
-background:#ff1a8c;
+@keyframes aparecer{
+0%{opacity:0;transform:translateY(30px)}
+100%{opacity:1}
 }
 
-h1{
-font-size:40px;
-margin-bottom:10px;
-}
-
-p{
-font-size:20px;
-max-width:700px;
-margin:auto;
-}
-
-.flower{
+.flor{
 position:absolute;
-bottom:-50px;
-font-size:30px;
-animation:float 8s linear infinite;
+font-size:28px;
+animation:caer 10s linear infinite;
 }
 
-@keyframes float{
-0%{transform:translateY(0);}
-100%{transform:translateY(-110vh);}
+@keyframes caer{
+0%{transform:translateY(-100px)}
+100%{transform:translateY(110vh)}
+}
+
+.corazon{
+position:absolute;
+font-size:24px;
+animation:latir 1s infinite alternate;
+}
+
+@keyframes latir{
+from{transform:scale(1)}
+to{transform:scale(1.4)}
 }
 
 </style>
@@ -75,56 +68,57 @@ animation:float 8s linear infinite;
 
 <body>
 
-<button onclick="mostrar()" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);">
-Toca aquí ❤️
-</button>
-
-<div class="content" id="content">
+<div class="container">
 
 <img src="https://i.postimg.cc/QtXTycc8/Whats-App-Image-2026-03-23-at-10-06-47.jpg">
 
-<h1>Para ti Liz</h1>
+<div class="mensaje">
 
-<p>
-Desde que llegaste a mi vida todo cambió.  
-Tu sonrisa ilumina mis días y tu presencia hace que todo tenga sentido.
-
-No sé qué nos depare el destino, pero sí sé algo con certeza:
-
-Que cada momento contigo es un regalo.
-
-Liz, eres una persona increíble…  
-y cada día me haces sentir que la vida puede ser aún más hermosa.
-
-❤️
-</p>
+🌻 Para Liz, mi princesa 🌻  
+<br><br>
+Hoy te regalo flores amarillas  
+porque cada día contigo  
+es como un rayo de sol en mi vida.  
+<br><br>
+Gracias por existir,  
+por tu amor  
+y por hacer mi mundo más bonito.  
+<br><br>
+❤️ Te amo ❤️
 
 </div>
 
-<audio id="musica" autoplay loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_9463c4c7cb.mp3?filename=romantic-love-116199.mp3">
+</div>
+
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4a4cdd4c6e.mp3?filename=romantic-piano-11086.mp3">
 </audio>
 
 <script>
 
-function mostrar(){
-document.querySelector("button").style.display="none";
-document.getElementById("content").style.display="block";
-document.getElementById("musica").play();
-}
-
 function crearFlor(){
-let flor=document.createElement("div");
-flor.className="flower";
-flor.innerHTML="🌻";
-flor.style.left=Math.random()*100+"vw";
-flor.style.animationDuration=(Math.random()*5+5)+"s";
-document.body.appendChild(flor);
-
-setTimeout(()=>{flor.remove();},8000);
+const flor=document.createElement("div")
+flor.className="flor"
+flor.innerHTML="🌻"
+flor.style.left=Math.random()*100+"vw"
+flor.style.animationDuration=(Math.random()*5+5)+"s"
+document.body.appendChild(flor)
+setTimeout(()=>flor.remove(),10000)
 }
 
-setInterval(crearFlor,800);
+setInterval(crearFlor,800)
+
+function crearCorazon(){
+const c=document.createElement("div")
+c.className="corazon"
+c.innerHTML="❤️"
+c.style.left=Math.random()*100+"vw"
+c.style.top=Math.random()*100+"vh"
+document.body.appendChild(c)
+setTimeout(()=>c.remove(),4000)
+}
+
+setInterval(crearCorazon,2000)
 
 </script>
 
