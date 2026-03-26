@@ -2,152 +2,130 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Para Liz Princesa 💛</title>
+<title>Para Liz ❤️</title>
 
 <style>
+
 body{
-  margin:0;
-  background:black;
-  overflow:hidden;
-  font-family: Arial;
-  color:white;
+margin:0;
+padding:0;
+background: radial-gradient(circle,#020024,#000000);
+font-family: Arial;
+overflow:hidden;
+color:white;
 }
 
-/* Fondo */
-.night{
-  position:fixed;
-  width:100%;
-  height:100%;
-  background: radial-gradient(circle at bottom, #020111, #000);
-}
-
-/* BOTON INICIO */
-.start{
-  position:absolute;
-  width:100%;
-  height:100%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-
-.btn{
-  background:#25D366;
-  padding:15px 25px;
-  border-radius:10px;
-  font-size:18px;
-  cursor:pointer;
-}
-
-/* CONTENIDO */
 .content{
-  display:none;
+display:none;
+text-align:center;
+position:absolute;
+top:45%;
+left:50%;
+transform:translate(-50%,-50%);
+width:90%;
 }
 
-/* FOTO */
-.photo{
-  text-align:center;
-  margin-top:80px;
+img{
+width:220px;
+border-radius:20px;
+box-shadow:0 0 25px pink;
+margin-bottom:20px;
 }
 
-.photo img{
-  width:250px;
-  border-radius:20px;
-  box-shadow:0 0 25px white;
+button{
+padding:15px 30px;
+font-size:20px;
+border:none;
+border-radius:30px;
+background:#ff4da6;
+color:white;
+cursor:pointer;
+box-shadow:0 0 15px #ff4da6;
 }
 
-/* FLORES */
-.flowers{
-  position:absolute;
-  bottom:0;
-  width:100%;
-  display:flex;
-  justify-content:center;
-  gap:40px;
+button:hover{
+background:#ff1a8c;
+}
+
+h1{
+font-size:40px;
+margin-bottom:10px;
+}
+
+p{
+font-size:20px;
+max-width:700px;
+margin:auto;
 }
 
 .flower{
-  width:15px;
-  height:0;
-  background:green;
-  animation:grow 4s forwards;
+position:absolute;
+bottom:-50px;
+font-size:30px;
+animation:float 8s linear infinite;
 }
 
-.flower::before{
-  content:"🌻";
-  position:absolute;
-  top:-40px;
-  font-size:40px;
+@keyframes float{
+0%{transform:translateY(0);}
+100%{transform:translateY(-110vh);}
 }
 
-@keyframes grow{
-  to{height:150px;}
-}
-
-/* TEXTO */
-.texto{
-  text-align:center;
-  margin-top:20px;
-  padding:20px;
-  line-height:1.6;
-}
 </style>
-
 </head>
 
 <body>
 
-<div class="night"></div>
+<button onclick="mostrar()" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);">
+Toca aquí ❤️
+</button>
 
-<!-- MUSICA (MEJOR FORMA) -->
-<audio id="music">
-  <source src="https://files.catbox.moe/8kq7c7.mp3" type="audio/mp3">
-</audio>
-
-<!-- INICIO -->
-<div class="start" id="start">
-  <div class="btn" onclick="startSurprise()">
-    💌 Liz Princesa… toca aquí 💛
-  </div>
-</div>
-
-<!-- CONTENIDO -->
 <div class="content" id="content">
 
-  <div class="photo">
-    <img src="https://i.postimg.cc/QtXTycc8/Whats-App-Image-2026-03-23-at-10-06-47.jpg">
-  </div>
+<img src="https://i.postimg.cc/QtXTycc8/Whats-App-Image-2026-03-23-at-10-06-47.jpg">
 
-  <div class="texto">
-    🌻 Feliz día de las flores amarillas mi amor 💛<br><br>
+<h1>Para ti Liz</h1>
 
-    Desde que llegaste a mi vida… todo cambió ❤️<br><br>
+<p>
+Desde que llegaste a mi vida todo cambió.  
+Tu sonrisa ilumina mis días y tu presencia hace que todo tenga sentido.
 
-    Le diste sentido a mis días, alegría a mi mundo  
-    y amor a mi corazón 💕<br><br>
+No sé qué nos depare el destino, pero sí sé algo con certeza:
 
-    Gracias por existir, por elegirme  
-    y por caminar conmigo 🥹<br><br>
+Que cada momento contigo es un regalo.
 
-    Liz Princesa… te amo muchísimo 💛🌻
-  </div>
+Liz, eres una persona increíble…  
+y cada día me haces sentir que la vida puede ser aún más hermosa.
 
-  <div class="flowers">
-    <div class="flower"></div>
-    <div class="flower"></div>
-    <div class="flower"></div>
-  </div>
+❤️
+</p>
 
 </div>
 
-<script>
-function startSurprise(){
-  document.getElementById("start").style.display="none";
-  document.getElementById("content").style.display="block";
+<audio id="musica" autoplay loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_9463c4c7cb.mp3?filename=romantic-love-116199.mp3">
+</audio>
 
-  // aquí SI funciona la música
-  document.getElementById("music").play();
+<script>
+
+function mostrar(){
+document.querySelector("button").style.display="none";
+document.getElementById("content").style.display="block";
+document.getElementById("musica").play();
 }
+
+function crearFlor(){
+let flor=document.createElement("div");
+flor.className="flower";
+flor.innerHTML="🌻";
+flor.style.left=Math.random()*100+"vw";
+flor.style.animationDuration=(Math.random()*5+5)+"s";
+document.body.appendChild(flor);
+
+setTimeout(()=>{flor.remove();},8000);
+}
+
+setInterval(crearFlor,800);
+
 </script>
 
 </body>
