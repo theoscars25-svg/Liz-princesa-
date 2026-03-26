@@ -90,7 +90,29 @@ y por hacer mi mundo más bonito.
 
 </div>
 
-<audio autoplay loop>
+<div style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);">
+<button onclick="playMusic()" 
+style="padding:12px 20px;font-size:16px;border:none;border-radius:10px;background:#ff4d6d;color:white;cursor:pointer;">
+🎵 Presiona aquí para escuchar la canción
+</button>
+</div>
+
+<iframe id="music"
+width="0"
+height="0"
+src=""
+frameborder="0"
+allow="autoplay">
+</iframe>
+
+<script>
+
+function playMusic(){
+document.getElementById("music").src=
+"https://www.youtube.com/embed/mrXpa-6ZhBM?autoplay=1&loop=1&playlist=mrXpa-6ZhBM"
+}
+
+</script>
 <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4a4cdd4c6e.mp3?filename=romantic-piano-11086.mp3">
 </audio>
 
